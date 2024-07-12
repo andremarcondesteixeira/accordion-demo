@@ -49,14 +49,23 @@
                     background-color: beige;
                     cursor: pointer;
                     padding: var(--space-sm);
-                    
+
                 }
-                
-                &:not(:last-child) > h1 {
-                    border-bottom: var(--border-default);
+
+                &:not(:last-child) {
+                    &[data-open="true"] p {
+                        border-bottom: var(--border-default);
+                    }
+    
+                    &:not([data-open="true"]) {
+                        >h1 {
+                            border-bottom: var(--border-default);
+                        }
+                    }
                 }
 
                 >section {
+                    /* This is the important part */
                     display: grid;
                     grid-template-rows: 0fr;
                     transition: 250ms grid-template-rows cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -70,7 +79,7 @@
                     }
                 }
 
-                &[data-open="true"] > section {
+                &[data-open="true"]>section {
                     grid-template-rows: 1fr;
                 }
             }
